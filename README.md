@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="" alt="Rickandmortyapp" />
+  <img src="src/assets/test.mov" alt="Rickandmortyapp" />
 
   &#xa0;
 
