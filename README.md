@@ -46,7 +46,8 @@
 
 ## :dart: About
 
-Describe your project
+Application that consumes the API with the information of the characters and episodes of Rick and Morty. This application was made in React Native with Expo, Flux architecture with Redux for state control, Styled-Components for styling and the i18n library for internationalization. The API can be found at: https://rickandmortyapi.com/documentation/
+
 
 ## :sparkles: Features
 
