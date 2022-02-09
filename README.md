@@ -50,9 +50,10 @@ Describe your project
 
 ## :sparkles: Features
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Character and Episode Screens;\
+:heavy_check_mark:
+Favorites screen with Redux for state control;\
+:heavy_check_mark: Internationalization with i18n;
 
 ## :rocket: Technologies
 
