@@ -36,6 +36,7 @@ const CharactersMap = ({ characters = [] }) => {
   }
 
   i18n.fallbacks = true;
+  i18n.locale = Localization.locale;
 
   return (
     <Container>
@@ -92,18 +93,10 @@ const CharactersMap = ({ characters = [] }) => {
               )}
               <InfoAbout>
                 <About style={{ fontFamily: "Poppins-SemiBold" }}>
-                  {i18n.t("Gender")}:
+                  {i18n.t("Gender:")}
                 </About>
                 <About style={{ fontFamily: "Poppins-Regular" }}>
                   {i18n.t(item.gender)}
-                </About>
-              </InfoAbout>
-              <InfoAbout>
-                <About style={{ fontFamily: "Poppins-SemiBold" }}>
-                  {i18n.t("Last known location:")}
-                </About>
-                <About style={{ fontFamily: "Poppins-Regular" }}>
-                  {i18n.t(item.location.name)}
                 </About>
               </InfoAbout>
 
@@ -115,6 +108,17 @@ const CharactersMap = ({ characters = [] }) => {
                   {item.origin.name === "Mr. Goldenfold's dream"
                     ? "O sonho de Goldenfold"
                     : i18n.t(item.origin.name)}
+                </About>
+              </InfoAbout>
+
+              <InfoAbout>
+                <About style={{ fontFamily: "Poppins-SemiBold" }}>
+                  {i18n.t("Last known location:")}
+                </About>
+                <About style={{ fontFamily: "Poppins-Regular" }}>
+                  {item.location.name === "Mr. Goldenfold's dream"
+                    ? "O sonho de Goldenfold"
+                    : i18n.t(item.location.name)}
                 </About>
               </InfoAbout>
             </InfosContainer>
@@ -129,7 +133,7 @@ export default CharactersMap;
 
 //translations
 i18n.translations = {
-  pt: {
+  "pt-BR": {
     Alive: "Vivo",
     Dead: "Morto",
     unknown: "Desconhecido",
@@ -138,10 +142,11 @@ i18n.translations = {
     Humanoid: "Humanóide",
     "Mythological Creature": "Criatura Mitológica",
     Poopybutthole: "Senhor calça cagada",
-    Gender: "Gênero",
+    "Gender:": "Gênero",
     Female: "Feminino",
     Male: "Masculino",
     Cronenberg: "Cronenberg",
+    Genderless: "Sem gênero",
     Animal: "Animal",
     Disease: "Doença",
     "Last known location:": "Último local conhecido:",
@@ -160,7 +165,7 @@ i18n.translations = {
     "Immortality Field Resort": "Resort Campo da Imortalidade",
     "Fantasy World": "Mundo da Fantasia",
     "Planet Squanch": "Planeta Squanch",
-    Abandango: "Abandango",
+    Abadango: "Abadango",
     "Bepis 9": "Bepis 9",
     "Venzenulon 7": "Venzenulon 7",
     "Purge Planet": "Planeta do Purgatório",
@@ -174,5 +179,30 @@ i18n.translations = {
     "Cronenberg Earth": "Terra Cronenberg",
     "St. Gloopy Noops Hospital": "Hospital Gloopy Noops",
     "Roy: A Life Well Lived": "Roy: Uma vida bem vivida",
+    "Nuptia 4": "Nuptia 4",
+    "Interdimensional Customs": "Alfândega Interdimensional",
+    "Earth (Giant Telepathic Spiders Dimension)":
+      "Terra (Dimensão das Aranhas Telepáticas Gigantes)",
+    "Hamster in Butt World": "Hamster no mundo da bunda",
+    Gazorpazorp: "Gazorpazorp",
+    "Galactic Federation Prison": "Prisão da Federação Galática",
+    "Earth (5-126)": "Terra (5-126)",
+    Jerryboree: "Jerryboree",
+    "Larva Alien's Planet": "Planeta das Larvas Alienígenas",
+    "Rick's Memories": "Memórias do Rick",
+    Alphabetrium: "Alphabetrium",
+    "Earth (K-22)": "Earth (K-22)",
+    "Pawn Shop Planet": "Planeta da loja de penhores",
+    "Zigerion's Base": "Base do Zigerion",
+    "Mega Gargantuan Kingdom": "Reino Mega Gargantuan",
+    "Gear World": "Mundo da Engrenagem",
+    "Earth (D-99)": "Terra (D-99)",
+    "Earth (D716)": "Terra (D716)",
+    "Earth (D716-C)": "Terra (D716-C)",
+    "Earth (J-22)": "Terra (J-22)",
+    "Resort Planet": "Planeta Resort",
+    Pluto: "Plutão",
+    "St. Gloopy Noops Hospital": "Hospital Gloopy Noops",
+    "Froopyland": "Froopylândia"
   },
 };

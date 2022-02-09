@@ -23,7 +23,8 @@ const Header = () => {
     <Container>
       <Image
         style={{
-          resizeMode: "contain",
+       
+          resizeMode: "center",
         }}
         source={Title}
       />

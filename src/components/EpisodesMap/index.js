@@ -16,18 +16,22 @@ import {
   TitleContainer,
 } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import { useEffect } from "react";
 import CharPerEpisode from "../CharPerEpisode";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite } from "../../store/actions";
+import { addFavorite, clickFavorite } from "../../store/actions";
+import { setFavorite } from "../../store/actions";
+import { removeFavorite } from "../../store/actions";
 
-const Episodes = ({episodes = []}) => {
+const Episodes = ({ episodes = [] }) => {
   const navigation = useNavigation();
+  // const { favoritted } = useSelector((state) => state.favoritted);
+  // console.log(favoritted)
   const dispatch = useDispatch();
-  const allEpisodes = useSelector((state) => state.favoriteEpisodes.episodes);
-  console.log(episodes)
+  const [favoritted, setFavoritted] = useState(false);
   const [loaded] = Font.useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-SemiBold": require("../../assets/fonts/Poppins-SemiBold.ttf"),
@@ -39,7 +43,16 @@ const Episodes = ({episodes = []}) => {
   }
 
   const addToFavorite = (episodeId) => {
+    const index = episodeId.id - 1;
+
+    console.log(index);
+
+    setFavoritted(!favoritted);
     dispatch(addFavorite(episodeId));
+  };
+
+  const removeFromFavorite = (item) => {
+    dispatch(removeFavorite(item));
   };
 
   return (
@@ -62,10 +75,14 @@ const Episodes = ({episodes = []}) => {
                 <IconContainer>
                   <ButtonFavorite
                     onPress={() => {
-                      addToFavorite(item.id);
+                      addToFavorite(item);
                     }}
                   >
-                    <Ionicons name="star" size={24} color="#D69D0D" />
+                    <MaterialCommunityIcons
+                      name={!favoritted ? "star-outline" : "star"}
+                      size={24}
+                      color={!favoritted ? "#FFF" : "#D69D0D"}
+                    />
                   </ButtonFavorite>
                 </IconContainer>
               </HeaderCard>

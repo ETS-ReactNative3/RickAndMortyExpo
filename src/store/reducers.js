@@ -1,43 +1,36 @@
 import * as types from "./types";
 
 const initialState = {
-  episodes: [],
-  clickedEpisode: {
-    air_date: "",
-    characters: "",
-    id: "",
-    name: "",
-    favorite: false,
-  },
+  favEpisodes: [{ favoritted: false }],
 };
 
 const favoriteEpisodes = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_FAVORITE:
-      const { epId } = action.payload;
+      const isFavorited = state.favEpisodes.find(
+        (ep) => ep.id === action.payload.id
+      );
+      if (isFavorited) {
+        return { ...state };
+      } else {
+        return {
+          ...state,
+          favEpisodes: [...state.favEpisodes, action.payload],
+        };
+      }
 
-      const epFound = state.episodes.find((item) => item.id === epId);
-
-      const epUpdate = (episode) => {
-        if (episode?.favorite) {
-          return {
-            ...episode,
-            favorite: !episode?.favorite,
-          };
-        } else {
-          return {
-            ...episode,
-            favorite: true,
-          };
-        }
-      };
-
-      const epArraySplitted = state.episodes.filter((item) => item.id !== epId);
-
+    case types.CHANGE_ICON_FAVORITE:
+      const clickFav = favEpisodes.find((ep) => ep.id === action.payload);
       return {
         ...state,
-        episodes: [...epArraySplitted, epUpdate(epFound)],
+        favoritted: clickFav,
       };
+
+    case types.REMOVE_FAVORITE:
+      const remove = state.favEpisodes.filter(
+        (ep) => ep.id !== action.payload.id
+      );
+      return { ...state, favEpisodes: remove };
 
     default:
       return state;

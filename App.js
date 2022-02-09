@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <StatusBar style="light" />
+        <StatusBar  style="light" />
         <Routes />
       </SafeAreaProvider>
     </Provider>
