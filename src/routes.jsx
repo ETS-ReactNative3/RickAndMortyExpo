@@ -4,9 +4,8 @@ import CharPerEpisode from "./components/CharPerEpisode";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Tabs from "./stacks/Tabs";
-
+import Preload from "./pages/Preload";
 const Stack = createStackNavigator();
-
 
 export default function Routes() {
   return (
@@ -17,14 +16,15 @@ export default function Routes() {
           headerTransparent: true,
           headerTitle: () => <Header />,
           headerBackTitleVisible: true,
-         
+
           headerBackImage: () => <></>,
         }}
+        initialRouteName="Preload"
       >
+        <Stack.Screen name="Preload" component={Preload} />
         <Stack.Screen name="Tabs" component={Tabs} />
         <Stack.Screen name="Modal" component={CharPerEpisode} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
