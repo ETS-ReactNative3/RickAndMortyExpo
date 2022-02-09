@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="src/assets/PostItAnimation.gif" alt="Rickandmortyapp" />
+  <!-- <img src="src/assets/PostItAnimation.gif" alt="Rickandmortyapp" /> -->
 
 &#xa0;
 
