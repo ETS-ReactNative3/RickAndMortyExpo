@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   About,
@@ -25,17 +25,17 @@ import * as Localization from "expo-localization";
 import i18n from "i18n-js";
 import * as Font from "expo-font";
 import { useNavigation } from "@react-navigation/native";
-import { removeFavorite } from "../../store/actions";
+import { updateFavorite } from "../../store/actions";
 import EmptyFavorites from "../EmptyFavorites";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TabTop from "../../stacks/TabsTop";
 
 const FavoritesMap = () => {
-  const { favEpisodes } = useSelector((state) => state.favoriteEpisodes);
+  const { episodes } = useSelector((state) => state.AllEpisodes);
 
-  const [epButton, setEpButton] = useState(false);
-  const [charButton, setCharButton] = useState(false);
+  // const [epButton, setEpButton] = useState(false);
+  // const [charButton, setCharButton] = useState(false);
 
   const navigation = useNavigation();
 
@@ -52,79 +52,77 @@ const FavoritesMap = () => {
   }
   //.toString().padStart(3, "0")
   const removeFav = (item) => {
-    dispatch(removeFavorite(item));
+    dispatch(updateFavorite(item));
   };
 
   i18n.fallbacks = true;
   i18n.locale = Localization.locale;
 
-  const isEpButton = epButton ? "1" : "0.5";
-  const isCharButton = charButton ? "1" : "0.5";
-
   return (
-  
-       <Container>
-        <FlatList
-          data={favEpisodes}
-          keyExtractor={(item) => item.id}
-          ListEmptyComponent={<EmptyFavorites />}
-          ListFooterComponent={<View />}
-          ListFooterComponentStyle={{ height: 10 }}
-          renderItem={({ item }) => (
-            <CardInfo>
-              <HeaderCard>
-                <TitleContainer>
-                  <Title style={{ fontFamily: "Audiowide-Regular" }}>
-                    {item.id.toString().padStart(3, "0")}
-                  </Title>
-                </TitleContainer>
-                <IconContainer>
-                  <ButtonFavorite
+    <Container>
+      <FlatList
+        data={episodes}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={<EmptyFavorites />}
+        ListFooterComponent={<View />}
+        ListFooterComponentStyle={{ height: 10 }}
+        renderItem={({ item }) => (
+          <>
+            {item.favorite ? (
+              <CardInfo>
+                <HeaderCard>
+                  <TitleContainer>
+                    <Title style={{ fontFamily: "Audiowide-Regular" }}>
+                      {item.id.toString().padStart(3, "0")}
+                    </Title>
+                  </TitleContainer>
+                  <IconContainer>
+                    <ButtonFavorite
+                      onPress={() => {
+                        removeFav(item.id);
+                      }}
+                    >
+                      <MaterialCommunityIcons
+                        name="star-off"
+                        size={24}
+                        color="#D69D0D"
+                      />
+                    </ButtonFavorite>
+                  </IconContainer>
+                </HeaderCard>
+                <InfosContainer>
+                  <InfoAbout>
+                    <About style={{ fontFamily: "Poppins-SemiBold" }}>
+                      {i18n.t("Name:")}
+                    </About>
+                    <About>{item.name}</About>
+                  </InfoAbout>
+                  <InfoAbout>
+                    <About style={{ fontFamily: "Poppins-SemiBold" }}>
+                      {i18n.t("On air at:")}
+                    </About>
+                    <About>{i18n.t(item.air_date)}</About>
+                  </InfoAbout>
+                </InfosContainer>
+                <FooterCard>
+                  <ButtonInfoEp
                     onPress={() => {
-                      removeFav(item);
+                      navigation.navigate("Modal", { state: item });
                     }}
                   >
-                    <MaterialCommunityIcons
-                      name="star-off"
-                      size={24}
-                      color="#D69D0D"
+                    <Ionicons
+                      name="information-circle-outline"
+                      size={35}
+                      color="#fff"
                     />
-                  </ButtonFavorite>
-                </IconContainer>
-              </HeaderCard>
-              <InfosContainer>
-                <InfoAbout>
-                  <About style={{ fontFamily: "Poppins-SemiBold" }}>
-                    {i18n.t("Name:")}
-                  </About>
-                  <About>{item.name}</About>
-                </InfoAbout>
-                <InfoAbout>
-                  <About style={{ fontFamily: "Poppins-SemiBold" }}>
-                    {i18n.t("On air at:")}
-                  </About>
-                  <About>{i18n.t(item.air_date)}</About>
-                </InfoAbout>
-              </InfosContainer>
-              <FooterCard>
-                <ButtonInfoEp
-                  onPress={() => {
-                    navigation.navigate("Modal", { state: item });
-                  }}
-                >
-                  <Ionicons
-                    name="information-circle-outline"
-                    size={35}
-                    color="#fff"
-                  />
-                </ButtonInfoEp>
-              </FooterCard>
-            </CardInfo>
-          )}
-        />
-      </Container> 
-     
-   
+                  </ButtonInfoEp>
+                </FooterCard>
+              </CardInfo>
+            ) : null}
+          </>
+        )}
+      />
+    </Container>
   );
 };
 

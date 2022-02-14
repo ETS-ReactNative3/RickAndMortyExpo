@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import favoriteEpisodes from "./reducers";
+import AllEpisodes from "./reducers";
 
 const rootReducers = combineReducers({
-  favoriteEpisodes,
+  AllEpisodes,
 });
 
 export default rootReducers;

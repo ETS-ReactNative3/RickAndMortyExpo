@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
+import React from "react";
+import { FlatList, View, ActivityIndicator } from "react-native";
 import {
   About,
   ButtonFavorite,
@@ -18,20 +18,16 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Font from "expo-font";
-import { useEffect } from "react";
-import CharPerEpisode from "../CharPerEpisode";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, clickFavorite } from "../../store/actions";
-import { setFavorite } from "../../store/actions";
-import { removeFavorite } from "../../store/actions";
+import { useDispatch } from "react-redux";
+import { updateFavorite } from "../../store/actions";
 
 const Episodes = ({ episodes = [] }) => {
   const navigation = useNavigation();
-  // const { favoritted } = useSelector((state) => state.favoritted);
+
   // console.log(favoritted)
   const dispatch = useDispatch();
-  const [favoritted, setFavoritted] = useState(false);
+
   const [loaded] = Font.useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-SemiBold": require("../../assets/fonts/Poppins-SemiBold.ttf"),
@@ -43,22 +39,14 @@ const Episodes = ({ episodes = [] }) => {
   }
 
   const addToFavorite = (episodeId) => {
-    const index = episodeId.id - 1;
-
-    console.log(index);
-
-    setFavoritted(!favoritted);
-    dispatch(addFavorite(episodeId));
-  };
-
-  const removeFromFavorite = (item) => {
-    dispatch(removeFavorite(item));
+    dispatch(updateFavorite(episodeId));
   };
 
   return (
     <>
       <Container>
         <View style={{ marginTop: 150 }} />
+
         <FlatList
           data={episodes}
           keyExtractor={(item) => item.id}
@@ -69,19 +57,19 @@ const Episodes = ({ episodes = [] }) => {
               <HeaderCard>
                 <TitleContainer>
                   <Title style={{ fontFamily: "Audiowide-Regular" }}>
-                    {item.id.toString().padStart(3, "0")}
+                    {item?.id?.toString().padStart(3, "0")}
                   </Title>
                 </TitleContainer>
                 <IconContainer>
                   <ButtonFavorite
                     onPress={() => {
-                      addToFavorite(item);
+                      addToFavorite(item.id);
                     }}
                   >
                     <MaterialCommunityIcons
-                      name={!favoritted ? "star-outline" : "star"}
+                      name={item.favorite ? "star" : "star-outline"}
                       size={24}
-                      color={!favoritted ? "#FFF" : "#D69D0D"}
+                      color={item.favorite ? "#D69D0D" : "#FFF"}
                     />
                   </ButtonFavorite>
                 </IconContainer>

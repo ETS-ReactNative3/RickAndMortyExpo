@@ -15,7 +15,7 @@ export default function Routes() {
           headerShown: true,
           headerTransparent: true,
           headerTitle: () => <Header />,
-          headerBackTitleVisible: true,
+          headerBackTitleVisible: false,
 
           headerBackImage: () => <></>,
         }}

@@ -1,40 +1,36 @@
 import * as types from "./types";
-
 const initialState = {
-  favEpisodes: [{ favoritted: false }],
+  page: 1,
+  episodes: [
+    {
+      air_date: "",
+      characters: [],
+      id: "",
+      name: "",
+      favorite: false,
+    },
+  ],
 };
 
-const favoriteEpisodes = (state = initialState, action) => {
+const AllEpisodes = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_FAVORITE:
-      const isFavorited = state.favEpisodes.find(
-        (ep) => ep.id === action.payload.id
-      );
-      if (isFavorited) {
-        return { ...state };
-      } else {
-        return {
-          ...state,
-          favEpisodes: [...state.favEpisodes, action.payload],
-        };
-      }
+    case types.FETCH_EPISODES:
+      const payloadCopy = action.payload.map((ep) => {
+        ep.favorite = false;
+        return ep;
+      });
+      return { ...state, episodes: payloadCopy };
 
-    case types.CHANGE_ICON_FAVORITE:
-      const clickFav = favEpisodes.find((ep) => ep.id === action.payload);
-      return {
-        ...state,
-        favoritted: clickFav,
-      };
-
-    case types.REMOVE_FAVORITE:
-      const remove = state.favEpisodes.filter(
-        (ep) => ep.id !== action.payload.id
-      );
-      return { ...state, favEpisodes: remove };
+    case types.UPDATE_FAVORITE:
+      const newState = state.episodes.map((ep) => {
+        ep.id === action.payload ? (ep.favorite = !ep.favorite) : null;
+        return ep;
+      });
+      return { ...state, newState };
 
     default:
       return state;
   }
 };
 
-export default favoriteEpisodes;
+export default AllEpisodes;

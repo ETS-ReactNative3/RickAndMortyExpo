@@ -1,7 +1,12 @@
 import * as types from "./types";
 
-export const addFavorite = (epInfo) => ({
-  type: types.ADD_FAVORITE,
+export const fecthEpisodes = (epInfo) => ({
+  type: types.FETCH_EPISODES,
+  payload: epInfo,
+});
+
+export const updateFavorite = (epInfo) => ({
+  type: types.UPDATE_FAVORITE,
   payload: epInfo,
 });
 

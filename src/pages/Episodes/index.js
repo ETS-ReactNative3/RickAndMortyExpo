@@ -1,13 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import CharPerEpisode from "../../components/CharPerEpisode";
 import EpisodesMap from "../../components/EpisodesMap";
 import Pagination from "../../components/Pagination";
+import { fecthEpisodes } from "../../store/actions";
 import { Container, ContainerPagination } from "./styles";
 
 const Episodes = () => {
-  const [episodes, setEpisodes] = useState([]);
+  // const [episodes, setEpisodes] = useState([]);
+  const { episodes } = useSelector((state) => {
+    return state.AllEpisodes;
+  });
+  const dispatch = useDispatch();
   const [info, setInfo] = useState({});
 
   const urlEpisodes = "https://rickandmortyapi.com/api/episode";
@@ -16,7 +22,7 @@ const Episodes = () => {
     await axios
       .get(url)
       .then(({ data }) => {
-        setEpisodes(data.results);
+        dispatch(fecthEpisodes(data.results));
         setInfo(data.info);
       })
       .catch((err) => console.log(err));
