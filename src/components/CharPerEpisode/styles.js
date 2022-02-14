@@ -16,7 +16,7 @@ export const HeaderCard = styled.View`
   justify-content: space-between;
   margin-bottom: 30px;
 
-  /* height: 100px; */
+ 
 `;
 
 export const TitleContainer = styled.View`
@@ -77,7 +77,7 @@ export const CharactersContainer = styled.View`
 `;
 
 export const InfosContainer = styled.View`
-  /* border: 1px solid white; */
+
   width: 300px;
   height: 100px;
   align-items: center;

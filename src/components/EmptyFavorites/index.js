@@ -24,7 +24,7 @@ const EmptyFavorites = () => {
         />
       </AnimationContainer>
       <Description style={{ fontFamily: "Audiowide-Regular" }}>
-        Lista vazia! Adicione um episódios ao seus favoritos!
+        Empty list! Add an episode to your favorites!
       </Description>
     </Container>
   );

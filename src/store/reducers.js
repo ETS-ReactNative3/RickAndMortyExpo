@@ -1,6 +1,5 @@
 import * as types from "./types";
 const initialState = {
-  page: 1,
   episodes: [
     {
       air_date: "",
@@ -23,10 +22,10 @@ const AllEpisodes = (state = initialState, action) => {
 
     case types.UPDATE_FAVORITE:
       const newState = state.episodes.map((ep) => {
-        ep.id === action.payload ? (ep.favorite = !ep.favorite) : null;
+        ep.id === action.payload && (ep.favorite = !ep.favorite);
         return ep;
       });
-      return { ...state, newState };
+      return { ...state, episodes: newState };
 
     default:
       return state;

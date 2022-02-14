@@ -4,7 +4,6 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 420px;
-  /* flex:1; */
   align-items: center;
 `;
 

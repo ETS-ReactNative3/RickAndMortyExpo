@@ -21,7 +21,7 @@ import {
 import * as Font from "expo-font";
 import { Avatar } from "react-native-elements";
 import * as Localization from "expo-localization";
-import i18n from "i18n-js";
+
 
 const CharactersMap = ({ characters = [] }) => {
   const [loaded] = Font.useFonts({
@@ -35,8 +35,7 @@ const CharactersMap = ({ characters = [] }) => {
     return null;
   }
 
-  i18n.fallbacks = true;
-  i18n.locale = Localization.locale;
+
 
   return (
     <Container>
@@ -71,7 +70,7 @@ const CharactersMap = ({ characters = [] }) => {
                 <InfoStatus>
                   <Status style={{ fontFamily: "Poppins-Regular" }}>🟢 </Status>
                   <Info style={{ fontFamily: "Poppins-Regular" }}>
-                    {i18n.t(item.status)} - {i18n.t(item.species)}
+                    {item.status} - {item.species}
                   </Info>
                 </InfoStatus>
               )}
@@ -79,7 +78,7 @@ const CharactersMap = ({ characters = [] }) => {
                 <InfoStatus>
                   <Status style={{ fontFamily: "Poppins-Regular" }}>🔴 </Status>
                   <Info style={{ fontFamily: "Poppins-Regular" }}>
-                    {i18n.t(item.status)} - {i18n.t(item.species)}
+                    {item.status} - {item.species}
                   </Info>
                 </InfoStatus>
               )}
@@ -87,38 +86,34 @@ const CharactersMap = ({ characters = [] }) => {
                 <InfoStatus>
                   <Status style={{ fontFamily: "Poppins-Regular" }}>⚫ </Status>
                   <Info style={{ fontFamily: "Poppins-Regular" }}>
-                    {i18n.t(item.status)} - {item.species}
+                    {item.status} - {item.species}
                   </Info>
                 </InfoStatus>
               )}
               <InfoAbout>
                 <About style={{ fontFamily: "Poppins-SemiBold" }}>
-                  {i18n.t("Gender:")}
+                  Gender:
                 </About>
                 <About style={{ fontFamily: "Poppins-Regular" }}>
-                  {i18n.t(item.gender)}
+                  {item.gender}
                 </About>
               </InfoAbout>
 
               <InfoAbout>
                 <About style={{ fontFamily: "Poppins-SemiBold" }}>
-                  {i18n.t("First seen in:")}
+                  First seen in:
                 </About>
                 <About style={{ fontFamily: "Poppins-Regular" }}>
-                  {item.origin.name === "Mr. Goldenfold's dream"
-                    ? "O sonho de Goldenfold"
-                    : i18n.t(item.origin.name)}
+                  {item.origin.name}
                 </About>
               </InfoAbout>
 
               <InfoAbout>
                 <About style={{ fontFamily: "Poppins-SemiBold" }}>
-                  {i18n.t("Last known location:")}
+                  Last known location:
                 </About>
                 <About style={{ fontFamily: "Poppins-Regular" }}>
-                  {item.location.name === "Mr. Goldenfold's dream"
-                    ? "O sonho de Goldenfold"
-                    : i18n.t(item.location.name)}
+                  {item.location.name}
                 </About>
               </InfoAbout>
             </InfosContainer>
@@ -131,78 +126,3 @@ const CharactersMap = ({ characters = [] }) => {
 
 export default CharactersMap;
 
-//translations
-i18n.translations = {
-  "pt-BR": {
-    Alive: "Vivo",
-    Dead: "Morto",
-    unknown: "Desconhecido",
-    Human: "Humano",
-    Alien: "Alienígena",
-    Humanoid: "Humanóide",
-    "Mythological Creature": "Criatura Mitológica",
-    Poopybutthole: "Senhor calça cagada",
-    "Gender:": "Gênero",
-    Female: "Feminino",
-    Male: "Masculino",
-    Cronenberg: "Cronenberg",
-    Genderless: "Sem gênero",
-    Animal: "Animal",
-    Disease: "Doença",
-    "Last known location:": "Último local conhecido:",
-    "First seen in:": "Visto pela primeira vez em:",
-    "Earth (C-137)": "Terra (C-137)",
-    "Earth (C-500A)": "Terra (C-500A)",
-    "Earth (Replacement Dimension)": "Terra (Dimensão de substituição)",
-    "Earth (J19ζ7)": "Terra (J19ζ7)",
-    "Earth (Evil Rick's Target Dimension)": "Terra (Dimensão do Evil Rick)",
-    "Citadel of Ricks": "Cidadela dos Ricks",
-    "Testicle Monster Dimension": "Dimensão do Monstro do Testículo",
-    "Worldender's lair": "Covil do Mundano",
-    "Anatomy Park": "Parque da Anatomia",
-    "Interdimensional Cable": "Canal Interdimensional",
-    "Post-Apocalyptic Earth": "Terra pós-apocalíptica",
-    "Immortality Field Resort": "Resort Campo da Imortalidade",
-    "Fantasy World": "Mundo da Fantasia",
-    "Planet Squanch": "Planeta Squanch",
-    Abadango: "Abadango",
-    "Bepis 9": "Bepis 9",
-    "Venzenulon 7": "Venzenulon 7",
-    "Purge Planet": "Planeta do Purgatório",
-    "Signus 5 Expanse": "Expansão Signus 5",
-    "Bird World": "Mundo dos Pássaros",
-    "Hideout Planet": "Planeta Esconderijo",
-    "Mr. Goldenfold's dream": "O sonho de Goldenfold",
-    "Dorian 5": "Dorian 5",
-    "Unity's Planet": "Planeta da Unidade",
-    "Giant's Town": "Cidade dos Gigantes",
-    "Cronenberg Earth": "Terra Cronenberg",
-    "St. Gloopy Noops Hospital": "Hospital Gloopy Noops",
-    "Roy: A Life Well Lived": "Roy: Uma vida bem vivida",
-    "Nuptia 4": "Nuptia 4",
-    "Interdimensional Customs": "Alfândega Interdimensional",
-    "Earth (Giant Telepathic Spiders Dimension)":
-      "Terra (Dimensão das Aranhas Telepáticas Gigantes)",
-    "Hamster in Butt World": "Hamster no mundo da bunda",
-    Gazorpazorp: "Gazorpazorp",
-    "Galactic Federation Prison": "Prisão da Federação Galática",
-    "Earth (5-126)": "Terra (5-126)",
-    Jerryboree: "Jerryboree",
-    "Larva Alien's Planet": "Planeta das Larvas Alienígenas",
-    "Rick's Memories": "Memórias do Rick",
-    Alphabetrium: "Alphabetrium",
-    "Earth (K-22)": "Earth (K-22)",
-    "Pawn Shop Planet": "Planeta da loja de penhores",
-    "Zigerion's Base": "Base do Zigerion",
-    "Mega Gargantuan Kingdom": "Reino Mega Gargantuan",
-    "Gear World": "Mundo da Engrenagem",
-    "Earth (D-99)": "Terra (D-99)",
-    "Earth (D716)": "Terra (D716)",
-    "Earth (D716-C)": "Terra (D716-C)",
-    "Earth (J-22)": "Terra (J-22)",
-    "Resort Planet": "Planeta Resort",
-    Pluto: "Plutão",
-    "St. Gloopy Noops Hospital": "Hospital Gloopy Noops",
-    "Froopyland": "Froopylândia"
-  },
-};

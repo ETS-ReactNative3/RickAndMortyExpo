@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FlatList, View, ActivityIndicator } from "react-native";
 import {
   About,
@@ -24,10 +24,13 @@ import { updateFavorite } from "../../store/actions";
 
 const Episodes = ({ episodes = [] }) => {
   const navigation = useNavigation();
-
+  
   // console.log(favoritted)
   const dispatch = useDispatch();
 
+  const addToFavorite = useCallback((episodeId) => {
+    dispatch(updateFavorite(episodeId)), [dispatch];
+  });
   const [loaded] = Font.useFonts({
     "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-SemiBold": require("../../assets/fonts/Poppins-SemiBold.ttf"),
@@ -38,9 +41,6 @@ const Episodes = ({ episodes = [] }) => {
     return null;
   }
 
-  const addToFavorite = (episodeId) => {
-    dispatch(updateFavorite(episodeId));
-  };
 
   return (
     <>

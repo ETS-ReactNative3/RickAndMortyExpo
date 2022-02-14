@@ -5,7 +5,6 @@ export const Container = styled.View`
   align-items: center;
   justify-content: center;
   background: #262c3a;
-  /* margin-top: 130px; */
 `;
 
 export const ContainerPagination = styled.View`
